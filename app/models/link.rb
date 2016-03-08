@@ -7,5 +7,7 @@ class Link < ActiveRecord::Base
   def fetch_summary(params)
     url = params['url']
     Page.get(url).css("meta[name='description']").first.attributes['content'].value
+    rescue HTTParty::Error
+    rescue StandardError
   end
 end

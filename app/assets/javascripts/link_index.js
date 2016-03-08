@@ -4,7 +4,10 @@ $(document).ready(function() {
   fetchLinksAlphabetically()
   fetchLinksByStatus()
   changeReadStatus()
+  viewUnreadLinksOnly()
+  viewReadLinksOnly()
 })
+
 
 function renderLink(link) {
   $("#link-info").append(
@@ -81,6 +84,41 @@ function fetchLinksByStatus() {
   })
 }
 
+function viewUnreadLinksOnly() {
+  $('#view-unread-links').on('click', function() {
+    var linkUri = '/api/v1/links'
+
+    $.getJSON(linkUri, function(data) {
+
+      $('#link-info').html('');
+      $.each(data, function(key, val) {
+        if (!val.read) {
+          renderLink(val)
+        }
+      })
+    })
+    $(this).hide();
+    $(this).siblings('button').show();
+  })
+}
+
+function viewReadLinksOnly() {
+  $('#view-read-links').on('click', function() {
+    var linkUri = '/api/v1/links'
+
+    $.getJSON(linkUri, function(data) {
+
+      $('#link-info').html('');
+      $.each(data, function(key, val) {
+        if (val.read) {
+          renderLink(val)
+        }
+      })
+    })
+    $(this).hide();
+    $(this).siblings('button').show();
+  })
+}
 
 function changeReadStatus() {
   $('#link-info').delegate('.mark-as-read-button', 'click', function() {

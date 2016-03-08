@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       resources :links, only: [:index, :update], defaults: { format: :json }
     end
   end
+
+  get '*path', to: 'links#index'
 end
