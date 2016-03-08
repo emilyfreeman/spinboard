@@ -81,6 +81,7 @@ function fetchLinksByStatus() {
   })
 }
 
+
 function changeReadStatus() {
   $('#link-info').delegate('.mark-as-read-button', 'click', function() {
 
