@@ -8,6 +8,8 @@ gem 'pg', '~> 0.15'
 gem 'figaro'
 gem 'responders'
 gem 'bcrypt'
+gem "validate_url"
+gem 'httparty'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
