@@ -8,6 +8,8 @@ class LinksController < ApplicationController
 
   def create
     @link = current_user.links.new(link_params)
+    url_meta_content = @link.fetch_summary(link_params)
+    @link.summary = url_meta_content
     if @link.save
       redirect_to root_path
     else

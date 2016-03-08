@@ -8,10 +8,11 @@ $(document).ready(function() {
 
 function renderLink(link) {
   $("#link-info").append(
-    "<div class='link" + grayLink(link) + "margin-bottom-40' data-id='" + link.id + "' data-read='" + link.read +
+    "<div class='link " + grayLink(link) + " margin-bottom-40' data-id='" + link.id + "' data-read='" + link.read +
     "' data-title='" + link.title + "' data-url='" + link.url +
     "'><span class='title-span'><span><strong>Title: </strong></span><h4 contentEditable='false' class='link-title'>" + link.title + "</h4></span>" +
     "<span><strong>URL: </strong></span><p contentEditable='false' class='link-url'>" + link.url + "</p>" +
+    "<span><strong>Summary: </strong></span><p class='link-summary'>" + link.summary + "</p>" +
     "<div>" + readButton(link) +
     "<a href='/links/" + link.id + "/edit'><button class='edit-link' name='edit-button' class=''>Edit</button></a>"
   )
@@ -27,9 +28,7 @@ function readButton(link) {
 
 function grayLink(link) {
   if (link.read) {
-    return " read-link "
-  } else {
-    return " "
+    return "read-link"
   }
 }
 
