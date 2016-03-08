@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: final-spinboard_production
-  username: final-spinboard
+  username: emilydowdle1
   password: <%= ENV['FINAL-SPINBOARD_DATABASE_PASSWORD'] %>

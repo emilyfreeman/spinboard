@@ -69,11 +69,9 @@ class Api::V1::LinksControllerTest < ActionController::TestCase
 
     get :update, format: :json, symbolize_names: true, id: Link.last.id, url: "http://google.com"
 
-
     assert_response :success
     assert_equal original_title, Link.last.title
     refute_equal original_url, Link.last.url
     assert_equal Link.last.url, "http://google.com"
   end
-
 end
