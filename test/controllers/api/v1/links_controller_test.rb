@@ -7,6 +7,35 @@ class Api::V1::LinksControllerTest < ActionController::TestCase
     user = User.create!(email: "emily@editingemily.com", password: "password")
     @current_user = user
     @current_user.links.create!(title: "Thing", url: "http://facebook.com")
+    ApplicationController.any_instance.stubs(:current_user).returns(@current_user)
+  end
+
+  test "#index responds to json" do
+    get :index, format: :json
+
+    assert_response :success
+  end
+
+  test "index returns an array of records" do
+    get :index, format: :json
+    assert_kind_of Array, json_response
+  end
+
+  test "index returns the correct number of link items" do
+    get :index, format: :json
+
+    assert_equal @current_user.links.count, json_response.count
+  end
+
+  test "#index contains link that have the correct properties" do
+    get :index, format: :json
+
+    json_response.each do |link|
+      assert link["title"]
+      assert link["url"]
+      assert link["created_at"]
+      assert link["updated_at"]
+    end
   end
 
   test "#update responds to json" do

@@ -44,6 +44,7 @@ group :development, :test do
   gem 'capybara'
   gem 'devise'
   gem 'launchy'
+  gem 'mocha'
 end
 
 group :development do
