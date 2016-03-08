@@ -25,6 +25,8 @@ class LinksController < ApplicationController
   def update
     @link = current_user.links.find(params[:id])
     @link.update(link_params)
+    url_meta_content = @link.fetch_summary(link_params)
+    @link.summary = url_meta_content
     if @link.save
       redirect_to root_path
     else
