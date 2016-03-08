@@ -8,7 +8,6 @@ $(document).ready(function() {
   viewReadLinksOnly()
 })
 
-
 function renderLink(link) {
   $("#link-info").append(
     "<div class='link " + grayLink(link) + " margin-bottom-40' data-id='" + link.id + "' data-read='" + link.read +
@@ -21,11 +20,14 @@ function renderLink(link) {
   )
 }
 
+var markAsUnreadButton = "<button class='mark-as-read-button' name='mark-as-unread-button' class=''>Mark as Unread</button></div>"
+var markAsReadButton = "<button class='mark-as-read-button' name='mark-as-read-button' class=''>Mark as Read</button>"
+
 function readButton(link) {
   if (link.read) {
-    return "<button class='mark-as-read-button' name='mark-as-unread-button' class=''>Mark as Unread</button></div>"
+    return markAsUnreadButton
   } else {
-    return "<button class='mark-as-read-button' name='mark-as-read-button' class=''>Mark as Read</button>"
+    return markAsReadButton
   }
 }
 
@@ -86,9 +88,7 @@ function fetchLinksByStatus() {
 
 function viewUnreadLinksOnly() {
   $('#view-unread-links').on('click', function() {
-    var linkUri = '/api/v1/links'
-
-    $.getJSON(linkUri, function(data) {
+    $.getJSON('/api/v1/links', function(data) {
 
       $('#link-info').html('');
       $.each(data, function(key, val) {
@@ -104,9 +104,7 @@ function viewUnreadLinksOnly() {
 
 function viewReadLinksOnly() {
   $('#view-read-links').on('click', function() {
-    var linkUri = '/api/v1/links'
-
-    $.getJSON(linkUri, function(data) {
+    $.getJSON('/api/v1/links', function(data) {
 
       $('#link-info').html('');
       $.each(data, function(key, val) {
