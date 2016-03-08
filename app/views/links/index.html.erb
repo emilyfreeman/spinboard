@@ -1,0 +1,32 @@
+<% if current_user %>
+  <%= link_to "Sign Out", logout_path, method: :delete %>
+
+  <h3>New Link</h3>
+
+  <%= form_for(@link) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+    <%= f.submit "Add Link" %>
+  <% end %>
+
+  <h3>Your Links</h3>
+
+  <div class="filter" id=link_filter_title>
+    <label for="link_filter_title">Search: </label>
+    <%= text_field_tag :search_by_title%>
+  </div>
+
+  <button id="filter-list-by-status">Filter List By Status</button>
+
+  <button id="filter-list-alphabetically">Filter List Alphabetically</button>
+
+  <div id="link-info" class="clearfix">
+
+  </div>
+
+<% else %>
+  <%= link_to "Sign In", login_path %>
+  <%= link_to "Sign Up", new_user_path %>
+<% end %>

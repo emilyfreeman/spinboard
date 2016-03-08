@@ -1,0 +1,9 @@
+<h3>Edit Link</h3>
+
+<%= form_for(@link, :url => {:action => "update", :id => @link.id}) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <%= f.submit "Update Link" %>
+<% end %>
